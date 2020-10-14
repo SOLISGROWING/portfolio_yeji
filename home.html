@@ -1,0 +1,1322 @@
+<!doctype html>
+<html>
+<head> 
+    
+<meta charset='UTF-8'><meta name='viewport' content="user-scalable=yes,width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"width=device-width-->
+</head> 
+<style>
+    /*@media ( max-width: 768px ) {
+  body { color: red; }
+  
+}*/
+ body{ 
+     font-family:'Nanum Gothic', sans-serif; 
+     
+     background-color:#ffffff ;
+} 
+.blank50{ 
+    height:50px;
+     } 
+.content-wrap{ 
+    background-color:white; 
+    margin-left:auto; 
+    margin-right:auto; 
+    width :850px; 
+    border: 3px solid #333333; 
+    padding: 20px; 
+    border-radius:5px; 
+} 
+.my-content{ 
+    font-size:15px;
+    line-height:1.8em;
+} 
+
+.feeling {display: flex; padding: 0px 5px;}
+
+.feeling > div {flex:1;}
+.feeling img {border:black 2px; width:50px; height:50px;}
+.feeling .left {text-align: left;}
+.feeling .middle {text-align: center;}
+.feeling .right {text-align: right;}
+.range1 {width:100%; height:auto;}
+.rangechild {display: flex;   box-sizing:border-box;}/*background-color: skyblue;*/
+.rangechild > input[type="radio"] {flex:1; margin:0 0 0 15px; width:20px; height: 20px; } /*justify-content:center;*/
+.coolchild { width:100%; background-color: #666;}
+.coolchild::after {content: ""; clear:both}
+.coolchild > div { float:left; display: flex; margin:0; padding:0; width: 50%; box-sizing: border-box;}
+.coolchild input[type="radio"] {flex:1; display: inline-block; width:20px; height: 20px;}
+.coolchild > div:first-child > input {margin:0 15px 0 3px;}
+.coolchild > div:first-child > input:last-child {margin:0;}
+.coolchild > div:last-child > input:first-child {margin:0 0 0 25px;}
+.coolchild > div:last-child > input:nth-child(5) {margin:0 0 0 35px;}
+.coolchild > div:last-child > input:nth-child(3) {margin:0 0 0 30px;}
+.coolchild > div:last-child > input:nth-child(4) {margin:0 0 0 30px;}
+.coolchild > div:last-child > input {margin:0 0 0 27px;}
+.my-range{ 
+    font-size:20px;
+} 
+/**.my-content input[type=radio],.my-content input[type=checkbox]{ 
+    * Double-sized Checkboxes 
+     -webkit-transform: scale(1.5); 
+     margin: 13.5px; 
+     padding:  0px 40px 0px 0px;
+}**/
+
+input[type="button"]{
+margin-top:20px;
+padding: .5rem 1rem; 
+font-size: 1.25rem; 
+line-height: 1.5; 
+border-radius: .3rem; 
+color: #fff; 
+    background-color: #007bff; 
+    border-color: #007bff; 
+    width: 300px; 
+}
+h2{
+    color:red;
+}
+input[type="reset"]{
+padding: .5rem 1rem; 
+font-size: 1.25rem; 
+line-height: 1.5; 
+border-radius: .3rem; 
+color: #fff; 
+}
+input[type=range]{ 
+    -webkit-appearance: none; 
+    width:250px; 
+} 
+input[type=range]::-webkit-slider-thumb {
+     -webkit-appearance: none; 
+     box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    
+     border: 3px solid white; 
+     height: 20px; 
+     width: 20px; 
+     border-radius: 50%; 
+     background: red; 
+     margin-top: -4px; 
+}
+input[type=range]::-webkit-slider-runnable-track { 
+    width: 500px; 
+    height: 10px;
+    cursor: pointer;
+    background: linear-gradient(to right, #005fc2, #35A834 40%, #ffd400 65%, #FF6400); 
+    box-shadow: 0 4px 4px rgba(0,0,0,0.3) inset;
+    border: 0.2px solid #010101;
+    border-radius: 3px; 
+} 
+input[type="submit"]{
+padding: .5rem 1rem; 
+font-size: 2.25rem; 
+line-height: 1.5; 
+border-radius: .5rem; 
+color:black; 
+}
+input[type=range]:focus {
+     outline: none; 
+}
+input[type=range]:focus::-webkit-slider-runnable-track { 
+    background: #ccc;
+}
+input[type="reset"]{ 
+    background-color: white; 
+    color: #333333; 
+} 
+textarea { 
+    border:2px solid black; 
+    width: 92%; 
+        border-radius:5px; 
+        padding:20px; 
+        font-size:1rem; 
+        font-weight:700; 
+        font-family:'Nanum Gothic', sans-serif; 
+}
+input[type=range]:focus::-webkit-slider-runnable-track { 
+   
+    background: linear-gradient(to right, #005fc2, #35A834 40%, #ffd400 65%, #FF6400);
+} 
+@media screen and (max-width:500px){ 
+    .content-wrap{ 
+
+    } 
+    .my-content{ 
+        font-size:15px!important; 
+    } 
+    
+    .content-wrap{
+         width :90%; 
+         padding: 1rem; 
+         border-radius:5px; 
+         } 
+         }
+        
+
+
+
+</style> 
+<script> 
+function myFunction(){
+//오늘 날짜 확인 
+var date = new Date(); //매개변수가 없는 경우 현재 날짜와 시간을 가지는 인스턴스를 반환한다. 
+var month = date.getMonth() + 1; // 0부터 시작하므로 1더함 더함 
+var day = date.getDate(); 
+
+if (("" + month).length == 1) { month = "0" + month; } 
+if (("" + day).length == 1) { day = "0" + day; } 
+var printedDate = month +'-'+day; 
+
+//아래 부분은 VAS 파악 
+var VAS=document.getElementById("vas-range").value; 
+
+var printedResult= Location +' '+ Lesion+' '+Trauma+' '+TraumaReason+' , '+ TraumaDuration+' , VAS: '+VAS +'\n'+ 'SB(+)'+'\n'+printedDate ; 
+document.getElementById("myResult").innerHTML= printedResult; 
+
+//아래는 결과 트리밍 printedResult=printedResult.replace(' ',' r'); 
+
+//결과 클립볻드로 복사 
+copy_to_clipboard(); };
+function copy_to_clipboard() { 
+    var copyText = document.getElementById("myResult"); 
+    copyText.focus(); 
+    copyText.select(); 
+    document.execCommand("Copy"); 
+    } 
+</script>
+
+<body> <div class="blan25"></div> 
+    <div class="content-wrap"> 
+        <span style = " font-size:4em;  color: black;font-weight: bold; ">5분후</span>
+        <!--h1> 설문지 </h1--> 
+        <!--form action="https://docs.google.com/forms/u/1/d/e/1FAIpQLSdE43yIN0OoBI5imhwgSFA2kQZIUX241w2E6R0OpKqkhlyqbQ/formResponse" target="resultIframe" method="POST" --> 
+            <div class="my-content"> 
+                <div name="my-pain-location"> 
+                    
+                    <h2>전신</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                        <input type="radio" name="entry.427587242" value="-4"> 
+                        <input type="radio" name="entry.427587242" value="-3.5">
+                        <input type="radio" name="entry.427587242" value="-3">
+                        <input type="radio" name="entry.427587242" value="-2.5">
+                        <input type="radio" name="entry.427587242" value="-2">
+                        <input type="radio" name="entry.427587242" value="-1.5">
+                        <input type="radio" name="entry.427587242" value="-1">
+                        <input type="radio" name="entry.427587242" value="-0.5">
+                        <input type="radio" name="entry.427587242" value="0">
+                        <input type="radio" name="entry.427587242" value="0.5">
+                        <input type="radio" name="entry.427587242" value="1">
+                        <input type="radio" name="entry.427587242" value="1.5">
+                        <input type="radio" name="entry.427587242" value="2">
+                        <input type="radio" name="entry.427587242" value="2.5">
+                        <input type="radio" name="entry.427587242" value="3">
+                        <input type="radio" name="entry.427587242" value="3.5">
+                        <input type="radio" name="entry.427587242" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                            <input type="radio" name="entry.1798057974" value="-4">
+                            <input type="radio" name="entry.1798057974" value="-3.5">
+                            <input type="radio" name="entry.1798057974" value="-3">
+                            <input type="radio" name="entry.1798057974" value="-2.5">
+                            <input type="radio" name="entry.1798057974" value="-2">
+                            <input type="radio" name="entry.1798057974" value="-1.5">
+                            <input type="radio" name="entry.1798057974" value="-1">
+                            <input type="radio" name="entry.1798057974" value="-0.5">
+                            <input type="radio" name="entry.1798057974" value="999">
+                        </div>
+                        <div>
+                            <input type="radio" name="entry.1798057974" value="0">
+                            <input type="radio" name="entry.1798057974" value="0.5">
+                            <input type="radio" name="entry.1798057974" value="1">
+                            <input type="radio" name="entry.1798057974" value="1.5">
+                            <input type="radio" name="entry.1798057974" value="2">
+                            <input type="radio" name="entry.1798057974" value="2.5">
+                            <input type="radio" name="entry.1798057974" value="3">
+                            <input type="radio" name="entry.1798057974" value="3.5">
+                            <input type="radio" name="entry.1798057974" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>머리</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.1745452093"  value="-4"> 
+                    <input type="radio" name="entry.1745452093"  value="-3.5">
+                    <input type="radio" name="entry.1745452093" value="-3">
+                    <input type="radio" name="entry.1745452093" value="-2.5">
+                    <input type="radio" name="entry.1745452093" value="-2">
+                    <input type="radio" name="entry.1745452093" value="-1.5">
+                    <input type="radio" name="entry.1745452093" value="-1">
+                    <input type="radio" name="entry.1745452093" value="-0.5">
+                    <input type="radio" name="entry.1745452093" value="0">
+                    <input type="radio" name="entry.1745452093" value="0.5">
+                    <input type="radio" name="entry.1745452093" value="1">
+                    <input type="radio" name="entry.1745452093" value="1.5">
+                    <input type="radio" name="entry.1745452093" value="2">
+                    <input type="radio" name="entry.1745452093" value="2.5">
+                    <input type="radio" name="entry.1745452093" value="3">
+                    <input type="radio" name="entry.1745452093" value="3.5">
+                    <input type="radio" name="entry.1745452093" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.90775522"  value="-4">
+                        <input type="radio" name="entry.90775522" value="-3.5">
+                        <input type="radio" name="entry.90775522" value="-3">
+                        <input type="radio" name="entry.90775522" value="-2.5">
+                        <input type="radio" name="entry.90775522" value="-2">
+                        <input type="radio" name="entry.90775522" value="-1.5">
+                        <input type="radio" name="entry.90775522" value="-1">
+                        <input type="radio" name="entry.90775522" value="-0.5">
+                        <input type="radio" name="entry.90775522" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.90775522" value="0">
+                        <input type="radio" name="entry.90775522" value="0.5">
+                        <input type="radio" name="entry.90775522" value="1">
+                        <input type="radio" name="entry.90775522" value="1.5">
+                        <input type="radio" name="entry.90775522" value="2">
+                        <input type="radio" name="entry.90775522" value="2.5">
+                        <input type="radio" name="entry.90775522" value="3">
+                        <input type="radio" name="entry.90775522" value="3.5">
+                        <input type="radio" name="entry.90775522" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <h2>가슴</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.438300067"  value="-4"> 
+                    <input type="radio" name="entry.438300067"value="-3.5">
+                    <input type="radio" name="entry.438300067" value="-3">
+                    <input type="radio" name="entry.438300067" value="-2.5">
+                    <input type="radio" name="entry.438300067" value="-2">
+                    <input type="radio" name="entry.438300067" value="-1.5">
+                    <input type="radio" name="entry.438300067" value="-1">
+                    <input type="radio" name="entry.438300067" value="-0.5">
+                    <input type="radio" name="entry.438300067" value="0">
+                    <input type="radio" name="entry.438300067" value="0.5">
+                    <input type="radio" name="entry.438300067" value="1">
+                    <input type="radio" name="entry.438300067" value="1.5">
+                    <input type="radio" name="entry.438300067" value="2">
+                    <input type="radio" name="entry.438300067" value="2.5">
+                    <input type="radio" name="entry.438300067" value="3">
+                    <input type="radio" name="entry.438300067" value="3.5">
+                    <input type="radio" name="entry.438300067" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.81695023"  value="-4">
+                        <input type="radio" name="entry.81695023" value="-3.5">
+                        <input type="radio" name="entry.81695023" value="-3">
+                        <input type="radio" name="entry.81695023" value="-2.5">
+                        <input type="radio" name="entry.81695023" value="-2">
+                        <input type="radio" name="entry.81695023" value="-1.5">
+                        <input type="radio" name="entry.81695023" value="-1">
+                        <input type="radio" name="entry.81695023" value="-0.5">
+                        <input type="radio" name="entry.81695023" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.81695023" value="0">
+                        <input type="radio" name="entry.81695023" value="0.5">
+                        <input type="radio" name="entry.81695023" value="1">
+                        <input type="radio" name="entry.81695023" value="1.5">
+                        <input type="radio" name="entry.81695023" value="2">
+                        <input type="radio" name="entry.81695023" value="2.5">
+                        <input type="radio" name="entry.81695023" value="3">
+                        <input type="radio" name="entry.81695023" value="3.5">
+                        <input type="radio" name="entry.81695023" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>복부</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.2067194643"  value="-4"> 
+                    <input type="radio" name="entry.2067194643"value="-3.5">
+                    <input type="radio" name="entry.2067194643" value="-3">
+                    <input type="radio" name="entry.2067194643" value="-2.5">
+                    <input type="radio" name="entry.2067194643" value="-2">
+                    <input type="radio" name="entry.2067194643" value="-1.5">
+                    <input type="radio" name="entry.2067194643" value="-1">
+                    <input type="radio" name="entry.2067194643" value="-0.5">
+                    <input type="radio" name="entry.2067194643" value="0">
+                    <input type="radio" name="entry.2067194643" value="0.5">
+                    <input type="radio" name="entry.2067194643" value="1">
+                    <input type="radio" name="entry.2067194643" value="1.5">
+                    <input type="radio" name="entry.2067194643" value="2">
+                    <input type="radio" name="entry.2067194643" value="2.5">
+                    <input type="radio" name="entry.2067194643" value="3">
+                    <input type="radio" name="entry.2067194643" value="3.5">
+                    <input type="radio" name="entry.2067194643" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.1967854277"  value="-4">
+                        <input type="radio" name="entry.1967854277" value="-3.5">
+                        <input type="radio" name="entry.1967854277" value="-3">
+                        <input type="radio" name="entry.1967854277" value="-2.5">
+                        <input type="radio" name="entry.1967854277" value="-2">
+                        <input type="radio" name="entry.1967854277" value="-1.5">
+                        <input type="radio" name="entry.1967854277" value="-1">
+                        <input type="radio" name="entry.1967854277" value="-0.5">
+                        <input type="radio" name="entry.1967854277" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.1967854277" value="0">
+                        <input type="radio" name="entry.1967854277" value="0.5">
+                        <input type="radio" name="entry.1967854277" value="1">
+                        <input type="radio" name="entry.1967854277" value="1.5">
+                        <input type="radio" name="entry.1967854277" value="2">
+                        <input type="radio" name="entry.1967854277" value="2.5">
+                        <input type="radio" name="entry.1967854277" value="3">
+                        <input type="radio" name="entry.1967854277" value="3.5">
+                        <input type="radio" name="entry.1967854277" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <h2>등</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.568931827"  value="-4"> 
+                    <input type="radio" name="entry.568931827"value="-3.5">
+                    <input type="radio" name="entry.568931827" value="-3">
+                    <input type="radio" name="entry.568931827" value="-2.5">
+                    <input type="radio" name="entry.568931827" value="-2">
+                    <input type="radio" name="entry.568931827" value="-1.5">
+                    <input type="radio" name="entry.568931827" value="-1">
+                    <input type="radio" name="entry.568931827" value="-0.5">
+                    <input type="radio" name="entry.568931827" value="0">
+                    <input type="radio" name="entry.568931827" value="0.5">
+                    <input type="radio" name="entry.568931827" value="1">
+                    <input type="radio" name="entry.568931827" value="1.5">
+                    <input type="radio" name="entry.568931827" value="2">
+                    <input type="radio" name="entry.568931827" value="2.5">
+                    <input type="radio" name="entry.568931827" value="3">
+                    <input type="radio" name="entry.568931827" value="3.5">
+                    <input type="radio" name="entry.568931827" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.1112193451"  value="-4">
+                        <input type="radio" name="entry.1112193451" value="-3.5">
+                        <input type="radio" name="entry.1112193451" value="-3">
+                        <input type="radio" name="entry.1112193451" value="-2.5">
+                        <input type="radio" name="entry.1112193451" value="-2">
+                        <input type="radio" name="entry.1112193451" value="-1.5">
+                        <input type="radio" name="entry.1112193451" value="-1">
+                        <input type="radio" name="entry.1112193451" value="-0.5">
+                        <input type="radio" name="entry.1112193451" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.1112193451" value="0">
+                        <input type="radio" name="entry.1112193451" value="0.5">
+                        <input type="radio" name="entry.1112193451" value="1">
+                        <input type="radio" name="entry.1112193451" value="1.5">
+                        <input type="radio" name="entry.1112193451" value="2">
+                        <input type="radio" name="entry.1112193451" value="2.5">
+                        <input type="radio" name="entry.1112193451" value="3">
+                        <input type="radio" name="entry.1112193451" value="3.5">
+                        <input type="radio" name="entry.1112193451" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>오른상완</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.1421472170"  value="-4"> 
+                    <input type="radio" name="entry.1421472170"value="-3.5">
+                    <input type="radio" name="entry.1421472170" value="-3">
+                    <input type="radio" name="entry.1421472170" value="-2.5">
+                    <input type="radio" name="entry.1421472170" value="-2">
+                    <input type="radio" name="entry.1421472170" value="-1.5">
+                    <input type="radio" name="entry.1421472170" value="-1">
+                    <input type="radio" name="entry.1421472170" value="-0.5">
+                    <input type="radio" name="entry.1421472170" value="0">
+                    <input type="radio" name="entry.1421472170" value="0.5">
+                    <input type="radio" name="entry.1421472170" value="1">
+                    <input type="radio" name="entry.1421472170" value="1.5">
+                    <input type="radio" name="entry.1421472170" value="2">
+                    <input type="radio" name="entry.1421472170" value="2.5">
+                    <input type="radio" name="entry.1421472170" value="3">
+                    <input type="radio" name="entry.1421472170" value="3.5">
+                    <input type="radio" name="entry.1421472170" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.734258045"  value="-4">
+                        <input type="radio" name="entry.734258045" value="-3.5">
+                        <input type="radio" name="entry.734258045" value="-3">
+                        <input type="radio" name="entry.734258045" value="-2.5">
+                        <input type="radio" name="entry.734258045" value="-2">
+                        <input type="radio" name="entry.734258045" value="-1.5">
+                        <input type="radio" name="entry.734258045" value="-1">
+                        <input type="radio" name="entry.734258045" value="-0.5">
+                        <input type="radio" name="entry.734258045" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.734258045" value="0">
+                        <input type="radio" name="entry.734258045" value="0.5">
+                        <input type="radio" name="entry.734258045" value="1">
+                        <input type="radio" name="entry.734258045" value="1.5">
+                        <input type="radio" name="entry.734258045" value="2">
+                        <input type="radio" name="entry.734258045" value="2.5">
+                        <input type="radio" name="entry.734258045" value="3">
+                        <input type="radio" name="entry.734258045" value="3.5">
+                        <input type="radio" name="entry.734258045" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <h2>오른전완</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.143389605"  value="-4"> 
+                    <input type="radio" name="entry.143389605"value="-3.5">
+                    <input type="radio" name="entry.143389605" value="-3">
+                    <input type="radio" name="entry.143389605" value="-2.5">
+                    <input type="radio" name="entry.143389605" value="-2">
+                    <input type="radio" name="entry.143389605" value="-1.5">
+                    <input type="radio" name="entry.143389605" value="-1">
+                    <input type="radio" name="entry.143389605" value="-0.5">
+                    <input type="radio" name="entry.143389605" value="0">
+                    <input type="radio" name="entry.143389605" value="0.5">
+                    <input type="radio" name="entry.143389605" value="1">
+                    <input type="radio" name="entry.143389605" value="1.5">
+                    <input type="radio" name="entry.143389605" value="2">
+                    <input type="radio" name="entry.143389605" value="2.5">
+                    <input type="radio" name="entry.143389605" value="3">
+                    <input type="radio" name="entry.143389605" value="3.5">
+                    <input type="radio" name="entry.143389605" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.1938465024"  value="-4">
+                        <input type="radio" name="entry.1938465024" value="-3.5">
+                        <input type="radio" name="entry.1938465024" value="-3">
+                        <input type="radio" name="entry.1938465024" value="-2.5">
+                        <input type="radio" name="entry.1938465024" value="-2">
+                        <input type="radio" name="entry.1938465024" value="-1.5">
+                        <input type="radio" name="entry.1938465024" value="-1">
+                        <input type="radio" name="entry.1938465024" value="-0.5">
+                        <input type="radio" name="entry.1938465024" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.1938465024" value="0">
+                        <input type="radio" name="entry.1938465024" value="0.5">
+                        <input type="radio" name="entry.1938465024" value="1">
+                        <input type="radio" name="entry.1938465024" value="1.5">
+                        <input type="radio" name="entry.1938465024" value="2">
+                        <input type="radio" name="entry.1938465024" value="2.5">
+                        <input type="radio" name="entry.1938465024" value="3">
+                        <input type="radio" name="entry.1938465024" value="3.5">
+                        <input type="radio" name="entry.1938465024" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <h2>오른손</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.1330701423"  value="-4"> 
+                    <input type="radio" name="entry.1330701423"value="-3.5">
+                    <input type="radio" name="entry.1330701423" value="-3">
+                    <input type="radio" name="entry.1330701423" value="-2.5">
+                    <input type="radio" name="entry.1330701423" value="-2">
+                    <input type="radio" name="entry.1330701423" value="-1.5">
+                    <input type="radio" name="entry.1330701423" value="-1">
+                    <input type="radio" name="entry.1330701423" value="-0.5">
+                    <input type="radio" name="entry.1330701423" value="0">
+                    <input type="radio" name="entry.1330701423" value="0.5">
+                    <input type="radio" name="entry.1330701423" value="1">
+                    <input type="radio" name="entry.1330701423" value="1.5">
+                    <input type="radio" name="entry.1330701423" value="2">
+                    <input type="radio" name="entry.1330701423" value="2.5">
+                    <input type="radio" name="entry.1330701423" value="3">
+                    <input type="radio" name="entry.1330701423" value="3.5">
+                    <input type="radio" name="entry.1330701423" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.405486683"  value="-4">
+                        <input type="radio" name="entry.405486683" value="-3.5">
+                        <input type="radio" name="entry.405486683" value="-3">
+                        <input type="radio" name="entry.405486683" value="-2.5">
+                        <input type="radio" name="entry.405486683" value="-2">
+                        <input type="radio" name="entry.405486683" value="-1.5">
+                        <input type="radio" name="entry.405486683" value="-1">
+                        <input type="radio" name="entry.405486683" value="-0.5">
+                        <input type="radio" name="entry.405486683" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.405486683" value="0">
+                        <input type="radio" name="entry.405486683" value="0.5">
+                        <input type="radio" name="entry.405486683" value="1">
+                        <input type="radio" name="entry.405486683" value="1.5">
+                        <input type="radio" name="entry.405486683" value="2">
+                        <input type="radio" name="entry.405486683" value="2.5">
+                        <input type="radio" name="entry.405486683" value="3">
+                        <input type="radio" name="entry.405486683" value="3.5">
+                        <input type="radio" name="entry.405486683" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <h2>왼쪽상완</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.901946686"  value="-4"> 
+                    <input type="radio" name="entry.901946686"value="-3.5">
+                    <input type="radio" name="entry.901946686" value="-3">
+                    <input type="radio" name="entry.901946686" value="-2.5">
+                    <input type="radio" name="entry.901946686" value="-2">
+                    <input type="radio" name="entry.901946686" value="-1.5">
+                    <input type="radio" name="entry.901946686" value="-1">
+                    <input type="radio" name="entry.901946686" value="-0.5">
+                    <input type="radio" name="entry.901946686" value="0">
+                    <input type="radio" name="entry.901946686" value="0.5">
+                    <input type="radio" name="entry.901946686" value="1">
+                    <input type="radio" name="entry.901946686" value="1.5">
+                    <input type="radio" name="entry.901946686" value="2">
+                    <input type="radio" name="entry.901946686" value="2.5">
+                    <input type="radio" name="entry.901946686" value="3">
+                    <input type="radio" name="entry.901946686" value="3.5">
+                    <input type="radio" name="entry.901946686" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.782098431"  value="-4">
+                        <input type="radio" name="entry.782098431" value="-3.5">
+                        <input type="radio" name="entry.782098431" value="-3">
+                        <input type="radio" name="entry.782098431" value="-2.5">
+                        <input type="radio" name="entry.782098431" value="-2">
+                        <input type="radio" name="entry.782098431" value="-1.5">
+                        <input type="radio" name="entry.782098431" value="-1">
+                        <input type="radio" name="entry.782098431" value="-0.5">
+                        <input type="radio" name="entry.782098431" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.782098431" value="0">
+                        <input type="radio" name="entry.782098431" value="0.5">
+                        <input type="radio" name="entry.782098431" value="1">
+                        <input type="radio" name="entry.782098431" value="1.5">
+                        <input type="radio" name="entry.782098431" value="2">
+                        <input type="radio" name="entry.782098431" value="2.5">
+                        <input type="radio" name="entry.782098431" value="3">
+                        <input type="radio" name="entry.782098431" value="3.5">
+                        <input type="radio" name="entry.782098431" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>왼쪽전완</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.5265974"  value="-4"> 
+                    <input type="radio" name="entry.5265974"value="-3.5">
+                    <input type="radio" name="entry.5265974" value="-3">
+                    <input type="radio" name="entry.5265974" value="-2.5">
+                    <input type="radio" name="entry.5265974" value="-2">
+                    <input type="radio" name="entry.5265974" value="-1.5">
+                    <input type="radio" name="entry.5265974" value="-1">
+                    <input type="radio" name="entry.5265974" value="-0.5">
+                    <input type="radio" name="entry.5265974" value="0">
+                    <input type="radio" name="entry.5265974" value="0.5">
+                    <input type="radio" name="entry.5265974" value="1">
+                    <input type="radio" name="entry.5265974" value="1.5">
+                    <input type="radio" name="entry.5265974" value="2">
+                    <input type="radio" name="entry.5265974" value="2.5">
+                    <input type="radio" name="entry.5265974" value="3">
+                    <input type="radio" name="entry.5265974" value="3.5">
+                    <input type="radio" name="entry.5265974" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                        <input type="radio" name="entry.1133046958"  value="-4">
+                        <input type="radio" name="entry.1133046958" value="-3.5">
+                        <input type="radio" name="entry.1133046958" value="-3">
+                        <input type="radio" name="entry.1133046958" value="-2.5">
+                        <input type="radio" name="entry.1133046958" value="-2">
+                        <input type="radio" name="entry.1133046958" value="-1.5">
+                        <input type="radio" name="entry.1133046958" value="-1">
+                        <input type="radio" name="entry.1133046958" value="-0.5">
+                        <input type="radio" name="entry.1133046958" value="999">
+                        </div>
+                        <div>
+                        <input type="radio" name="entry.1133046958" value="0">
+                        <input type="radio" name="entry.1133046958" value="0.5">
+                        <input type="radio" name="entry.1133046958" value="1">
+                        <input type="radio" name="entry.1133046958" value="1.5">
+                        <input type="radio" name="entry.1133046958" value="2">
+                        <input type="radio" name="entry.1133046958" value="2.5">
+                        <input type="radio" name="entry.1133046958" value="3">
+                        <input type="radio" name="entry.1133046958" value="3.5">
+                        <input type="radio" name="entry.1133046958" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>왼손</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.1722407174"  value="-4"> 
+                    <input type="radio" name="entry.1722407174"value="-3.5">
+                    <input type="radio" name="entry.1722407174" value="-3">
+                    <input type="radio" name="entry.1722407174" value="-2.5">
+                    <input type="radio" name="entry.1722407174" value="-2">
+                    <input type="radio" name="entry.1722407174" value="-1.5">
+                    <input type="radio" name="entry.1722407174" value="-1">
+                    <input type="radio" name="entry.1722407174" value="-0.5">
+                    <input type="radio" name="entry.1722407174" value="0">
+                    <input type="radio" name="entry.1722407174" value="0.5">
+                    <input type="radio" name="entry.1722407174" value="1">
+                    <input type="radio" name="entry.1722407174" value="1.5">
+                    <input type="radio" name="entry.1722407174" value="2">
+                    <input type="radio" name="entry.1722407174" value="2.5">
+                    <input type="radio" name="entry.1722407174" value="3">
+                    <input type="radio" name="entry.1722407174" value="3.5">
+                    <input type="radio" name="entry.1722407174" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                    <div>
+                        <input type="radio" name="entry.1641349169"  value="-4">
+                        <input type="radio" name="entry.1641349169" value="-3.5">
+                        <input type="radio" name="entry.1641349169" value="-3">
+                        <input type="radio" name="entry.1641349169" value="-2.5">
+                        <input type="radio" name="entry.1641349169" value="-2">
+                        <input type="radio" name="entry.1641349169" value="-1.5">
+                        <input type="radio" name="entry.1641349169" value="-1">
+                        <input type="radio" name="entry.1641349169" value="-0.5">
+                        <input type="radio" name="entry.1641349169" value="999">
+                    </div>
+                    <div>
+                        <input type="radio" name="entry.1641349169" value="0">
+                        <input type="radio" name="entry.1641349169" value="0.5">
+                        <input type="radio" name="entry.1641349169" value="1">
+                        <input type="radio" name="entry.1641349169" value="1.5">
+                        <input type="radio" name="entry.1641349169" value="2">
+                        <input type="radio" name="entry.1641349169" value="2.5">
+                        <input type="radio" name="entry.1641349169" value="3">
+                        <input type="radio" name="entry.1641349169" value="3.5">
+                        <input type="radio" name="entry.1641349169" value="4">
+                    </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>오른허벅지</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.1344452585"  value="-4"> 
+                    <input type="radio" name="entry.1344452585"value="-3.5">
+                    <input type="radio" name="entry.1344452585" value="-3">
+                    <input type="radio" name="entry.1344452585" value="-2.5">
+                    <input type="radio" name="entry.1344452585" value="-2">
+                    <input type="radio" name="entry.1344452585" value="-1.5">
+                    <input type="radio" name="entry.1344452585" value="-1">
+                    <input type="radio" name="entry.1344452585" value="-0.5">
+                    <input type="radio" name="entry.1344452585" value="0">
+                    <input type="radio" name="entry.1344452585" value="0.5">
+                    <input type="radio" name="entry.1344452585" value="1">
+                    <input type="radio" name="entry.1344452585" value="1.5">
+                    <input type="radio" name="entry.1344452585" value="2">
+                    <input type="radio" name="entry.1344452585" value="2.5">
+                    <input type="radio" name="entry.1344452585" value="3">
+                    <input type="radio" name="entry.1344452585" value="3.5">
+                    <input type="radio" name="entry.1344452585" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                            <input type="radio" name="entry.1510783302"  value="-4">
+                            <input type="radio" name="entry.1510783302" value="-3.5">
+                            <input type="radio" name="entry.1510783302" value="-3">
+                            <input type="radio" name="entry.1510783302" value="-2.5">
+                            <input type="radio" name="entry.1510783302" value="-2">
+                            <input type="radio" name="entry.1510783302" value="-1.5">
+                            <input type="radio" name="entry.1510783302" value="-1">
+                            <input type="radio" name="entry.1510783302" value="-0.5">
+                            <input type="radio" name="entry.1510783302" value="999">
+                        </div>
+                        <div>
+                            <input type="radio" name="entry.1510783302" value="0">
+                            <input type="radio" name="entry.1510783302" value="0.5">
+                            <input type="radio" name="entry.1510783302" value="1">
+                            <input type="radio" name="entry.1510783302" value="1.5">
+                            <input type="radio" name="entry.1510783302" value="2">
+                            <input type="radio" name="entry.1510783302" value="2.5">
+                            <input type="radio" name="entry.1510783302" value="3">
+                            <input type="radio" name="entry.1510783302" value="3.5">
+                            <input type="radio" name="entry.1510783302" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>왼허벅지</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.452180006"  value="-4"> 
+                    <input type="radio" name="entry.452180006"value="-3.5">
+                    <input type="radio" name="entry.452180006" value="-3">
+                    <input type="radio" name="entry.452180006" value="-2.5">
+                    <input type="radio" name="entry.452180006" value="-2">
+                    <input type="radio" name="entry.452180006" value="-1.5">
+                    <input type="radio" name="entry.452180006" value="-1">
+                    <input type="radio" name="entry.452180006" value="-0.5">
+                    <input type="radio" name="entry.452180006" value="0">
+                    <input type="radio" name="entry.452180006" value="0.5">
+                    <input type="radio" name="entry.452180006" value="1">
+                    <input type="radio" name="entry.452180006" value="1.5">
+                    <input type="radio" name="entry.452180006" value="2">
+                    <input type="radio" name="entry.452180006" value="2.5">
+                    <input type="radio" name="entry.452180006" value="3">
+                    <input type="radio" name="entry.452180006" value="3.5">
+                    <input type="radio" name="entry.452180006" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                            <input type="radio" name="entry.403947645"  value="-4">
+                            <input type="radio" name="entry.403947645" value="-3.5">
+                            <input type="radio" name="entry.403947645" value="-3">
+                            <input type="radio" name="entry.403947645" value="-2.5">
+                            <input type="radio" name="entry.403947645" value="-2">
+                            <input type="radio" name="entry.403947645" value="-1.5">
+                            <input type="radio" name="entry.403947645" value="-1">
+                            <input type="radio" name="entry.403947645" value="-0.5">
+                            <input type="radio" name="entry.403947645" value="999">
+                        </div>
+                        <div>
+                            <input type="radio" name="entry.403947645" value="0">
+                            <input type="radio" name="entry.403947645" value="0.5">
+                            <input type="radio" name="entry.403947645" value="1">
+                            <input type="radio" name="entry.403947645" value="1.5">
+                            <input type="radio" name="entry.403947645" value="2">
+                            <input type="radio" name="entry.403947645" value="2.5">
+                            <input type="radio" name="entry.403947645" value="3">
+                            <input type="radio" name="entry.403947645" value="3.5">
+                            <input type="radio" name="entry.403947645" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>오른종아리</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.1931033673"  value="-4"> 
+                    <input type="radio" name="entry.1931033673"value="-3.5">
+                    <input type="radio" name="entry.1931033673" value="-3">
+                    <input type="radio" name="entry.1931033673" value="-2.5">
+                    <input type="radio" name="entry.1931033673" value="-2">
+                    <input type="radio" name="entry.1931033673" value="-1.5">
+                    <input type="radio" name="entry.1931033673" value="-1">
+                    <input type="radio" name="entry.1931033673" value="-0.5">
+                    <input type="radio" name="entry.1931033673" value="0">
+                    <input type="radio" name="entry.1931033673" value="0.5">
+                    <input type="radio" name="entry.1931033673" value="1">
+                    <input type="radio" name="entry.1931033673" value="1.5">
+                    <input type="radio" name="entry.1931033673" value="2">
+                    <input type="radio" name="entry.1931033673" value="2.5">
+                    <input type="radio" name="entry.1931033673" value="3">
+                    <input type="radio" name="entry.1931033673" value="3.5">
+                    <input type="radio" name="entry.1931033673" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                            <input type="radio" name="entry.1880479090"  value="-4">
+                            <input type="radio" name="entry.1880479090" value="-3.5">
+                            <input type="radio" name="entry.1880479090" value="-3">
+                            <input type="radio" name="entry.1880479090" value="-2.5">
+                            <input type="radio" name="entry.1880479090" value="-2">
+                            <input type="radio" name="entry.1880479090" value="-1.5">
+                            <input type="radio" name="entry.1880479090" value="-1">
+                            <input type="radio" name="entry.1880479090" value="-0.5">
+                            <input type="radio" name="entry.1880479090" value="999">
+                        </div>
+                        <div>
+                            <input type="radio" name="entry.1880479090" value="0">
+                            <input type="radio" name="entry.1880479090" value="0.5">
+                            <input type="radio" name="entry.1880479090" value="1">
+                            <input type="radio" name="entry.1880479090" value="1.5">
+                            <input type="radio" name="entry.1880479090" value="2">
+                            <input type="radio" name="entry.1880479090" value="2.5">
+                            <input type="radio" name="entry.1880479090" value="3">
+                            <input type="radio" name="entry.1880479090" value="3.5">
+                            <input type="radio" name="entry.1880479090" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>왼종아리</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.85875342"  value="-4"> 
+                    <input type="radio" name="entry.85875342"value="-3.5">
+                    <input type="radio" name="entry.85875342" value="-3">
+                    <input type="radio" name="entry.85875342" value="-2.5">
+                    <input type="radio" name="entry.85875342" value="-2">
+                    <input type="radio" name="entry.85875342" value="-1.5">
+                    <input type="radio" name="entry.85875342" value="-1">
+                    <input type="radio" name="entry.85875342" value="-0.5">
+                    <input type="radio" name="entry.85875342" value="0">
+                    <input type="radio" name="entry.85875342" value="0.5">
+                    <input type="radio" name="entry.85875342" value="1">
+                    <input type="radio" name="entry.85875342" value="1.5">
+                    <input type="radio" name="entry.85875342" value="2">
+                    <input type="radio" name="entry.85875342" value="2.5">
+                    <input type="radio" name="entry.85875342" value="3">
+                    <input type="radio" name="entry.85875342" value="3.5">
+                    <input type="radio" name="entry.85875342" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                            <input type="radio" name="entry.966859167"  value="-4">
+                            <input type="radio" name="entry.966859167" value="-3.5">
+                            <input type="radio" name="entry.966859167" value="-3">
+                            <input type="radio" name="entry.966859167" value="-2.5">
+                            <input type="radio" name="entry.966859167" value="-2">
+                            <input type="radio" name="entry.966859167" value="-1.5">
+                            <input type="radio" name="entry.966859167" value="-1">
+                            <input type="radio" name="entry.966859167" value="-0.5">
+                            <input type="radio" name="entry.966859167" value="999">
+                        </div>
+                        <div>
+                            <input type="radio" name="entry.966859167" value="0">
+                            <input type="radio" name="entry.966859167" value="0.5">
+                            <input type="radio" name="entry.966859167" value="1">
+                            <input type="radio" name="entry.966859167" value="1.5">
+                            <input type="radio" name="entry.966859167" value="2">
+                            <input type="radio" name="entry.966859167" value="2.5">
+                            <input type="radio" name="entry.966859167" value="3">
+                            <input type="radio" name="entry.966859167" value="3.5">
+                            <input type="radio" name="entry.966859167" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>오른발</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.911930907"  value="-4"> 
+                    <input type="radio" name="entry.911930907"value="-3.5">
+                    <input type="radio" name="entry.911930907" value="-3">
+                    <input type="radio" name="entry.911930907" value="-2.5">
+                    <input type="radio" name="entry.911930907" value="-2">
+                    <input type="radio" name="entry.911930907" value="-1.5">
+                    <input type="radio" name="entry.911930907" value="-1">
+                    <input type="radio" name="entry.911930907" value="-0.5">
+                    <input type="radio" name="entry.911930907" value="0">
+                    <input type="radio" name="entry.911930907" value="0.5">
+                    <input type="radio" name="entry.911930907" value="1">
+                    <input type="radio" name="entry.911930907" value="1.5">
+                    <input type="radio" name="entry.911930907" value="2">
+                    <input type="radio" name="entry.911930907" value="2.5">
+                    <input type="radio" name="entry.911930907" value="3">
+                    <input type="radio" name="entry.911930907" value="3.5">
+                    <input type="radio" name="entry.911930907" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                            <input type="radio" name="entry.869048429"  value="-4">
+                            <input type="radio" name="entry.869048429" value="-3.5">
+                            <input type="radio" name="entry.869048429" value="-3">
+                            <input type="radio" name="entry.869048429" value="-2.5">
+                            <input type="radio" name="entry.869048429" value="-2">
+                            <input type="radio" name="entry.869048429" value="-1.5">
+                            <input type="radio" name="entry.869048429" value="-1">
+                            <input type="radio" name="entry.869048429" value="-0.5">
+                            <input type="radio" name="entry.869048429" value="999">
+                        </div>
+                        <div>
+                            <input type="radio" name="entry.869048429" value="0">
+                            <input type="radio" name="entry.869048429" value="0.5">
+                            <input type="radio" name="entry.869048429" value="1">
+                            <input type="radio" name="entry.869048429" value="1.5">
+                            <input type="radio" name="entry.869048429" value="2">
+                            <input type="radio" name="entry.869048429" value="2.5">
+                            <input type="radio" name="entry.869048429" value="3">
+                            <input type="radio" name="entry.869048429" value="3.5">
+                            <input type="radio" name="entry.869048429" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <h2>왼발</h2>
+                    <h3> 한서감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우춥다.jpg'></div>
+                        <div class="middle"><img src='보통이다.jpg'></div>
+                        <div class="right"><img src='매우덥다.jpg'></div>
+                    </div>
+                    <img src='range1.jpg' class="range1"><br>
+                    <div class="rangechild">
+                    <input type="radio" name="entry.925958453"  value="-4"> 
+                    <input type="radio" name="entry.925958453"value="-3.5">
+                    <input type="radio" name="entry.925958453" value="-3">
+                    <input type="radio" name="entry.925958453" value="-2.5">
+                    <input type="radio" name="entry.925958453" value="-2">
+                    <input type="radio" name="entry.925958453" value="-1.5">
+                    <input type="radio" name="entry.925958453" value="-1">
+                    <input type="radio" name="entry.925958453" value="-0.5">
+                    <input type="radio" name="entry.925958453" value="0">
+                    <input type="radio" name="entry.925958453" value="0.5">
+                    <input type="radio" name="entry.925958453" value="1">
+                    <input type="radio" name="entry.925958453" value="1.5">
+                    <input type="radio" name="entry.925958453" value="2">
+                    <input type="radio" name="entry.925958453" value="2.5">
+                    <input type="radio" name="entry.925958453" value="3">
+                    <input type="radio" name="entry.925958453" value="3.5">
+                    <input type="radio" name="entry.925958453" value="4">
+                    </div>
+                    <br>
+                    <br>
+                    
+                    <h3> 쾌적감</h3>
+                    <div class="feeling">
+                        <div class="left"><img src='매우불쾌.jpg'></div>
+                        <div class="right"><img src='매우쾌적.jpg'></div>
+                    </div>
+                    
+                    <img src='rangecool.jpg' class="range1"><br>
+                    <div class="coolchild">
+                        <div>
+                            <input type="radio" name="entry.1986462706"  value="-4">
+                            <input type="radio" name="entry.1986462706" value="-3.5">
+                            <input type="radio" name="entry.1986462706" value="-3">
+                            <input type="radio" name="entry.1986462706" value="-2.5">
+                            <input type="radio" name="entry.1986462706" value="-2">
+                            <input type="radio" name="entry.1986462706" value="-1.5">
+                            <input type="radio" name="entry.1986462706" value="-1">
+                            <input type="radio" name="entry.1986462706" value="-0.5">
+                            <input type="radio" name="entry.1986462706" value="999">
+                        </div>
+                        <div>
+                            <input type="radio" name="entry.1986462706" value="0">
+                            <input type="radio" name="entry.1986462706" value="0.5">
+                            <input type="radio" name="entry.1986462706" value="1">
+                            <input type="radio" name="entry.1986462706" value="1.5">
+                            <input type="radio" name="entry.1986462706" value="2">
+                            <input type="radio" name="entry.1986462706" value="2.5">
+                            <input type="radio" name="entry.1986462706" value="3">
+                            <input type="radio" name="entry.1986462706" value="3.5">
+                            <input type="radio" name="entry.1986462706" value="4">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+
+                    
+                
+                <div id="submission-hc">
+                    <!--input type="button" class="btn-yes" value="결과" onclick="myFunction()"-->
+                    <!--input type="reset" value="새로고침"-->
+                </div>
+                <hr> <!--textarea id="myResult" rows="8" style="white-space:pre;">위의 결과를 누르시면 결과가 클립보드로 복사됩니다.</textarea--> 
+                <input type="submit" value="DB저장"> 
+                <!--a href="https://docs.google.com/spreadsheets/d/1p4OFYlY8unGaNqnatVhF19uFp4wIURgyhCjxgBlHz8k/edit?usp=sharing"target="_blank" style="text-decoration:none;"> 
+                    <span style="padding: .5rem 1rem; 
+                    font-size: 2.25rem; 
+                    line-height: 1.5; 
+                    border-radius: .5rem; 
+                    color:black; border:1px solid grey; background-color:#ddd; padding: 2px; font-size:19px;">DB 보기 </span></a> 
+                    <iframe name="resultIframe"width="700" height="50px"style="margin: 20px 0px 0px 0px;">iframe</iframe><br>
+                    <div style="text-align: center;">
+                    <button onclick="location.href='10분후.html'",span style="border:1px solid grey; background-color:white; padding: 10px; font-size:30px;border-radius: .3rem; ">next</button >
+                    </div>
+                 </div> </div> 
+                 <script>
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbzwl262u_S-xajcbAv0xA-J9Est5dlUv3MN5r095-4mQ5MauEug/exec'
+                    const form = document.forms['google-sheet']
+                  
+                    form.addEventListener('submit', e => {
+                      e.preventDefault()
+                      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                        .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                        .catch(error => console.error('Error!', error.message))
+                    })
+                  </script>
+        
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                </body> </html>
+
+
+
+
+
+
+
+
+
+
