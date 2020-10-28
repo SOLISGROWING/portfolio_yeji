@@ -15,11 +15,11 @@
 <body>
       
       - 1단계 크롤링 하기 (21만개의 이미지와 텍스트데이터)
-      ##### 힘들었던점 : 크롤링의 속도개선 
-      - 참고 내용 https://solisgrowing.github.io/2020/02/10/googlecloudplatform-using-selenium/
+            - 힘들었던점 : 크롤링의 속도개선 
+            - 해결법 : https://solisgrowing.github.io/2020/02/10/googlecloudplatform-using-selenium/
       - 2단계 딥러닝으로 학습시키기
       - 3단계 예측결과 django로 예측웹페이지 만들기<br>
-      #####힘들었던 점 : 텍스트 임베딩을 수행하기 위해서  X, y 없이, target 없이 임베딩을 하기가 어렵다. 
+            - 힘들었던 점 : 텍스트 임베딩을 수행하기 위해서  X, y 없이, target 없이 임베딩을 하기가 어렵다. 
       - 해결점 : 이미 훈련된 임베딩 벡터를 받아와서 우리 데이터를 Embedding()을 직접 적용하여 임베딩을 합니다.  Word2Vec과 Tfidf의 단점들을 보완하고 장점들을 가지고 있는 Pre-trained GloVe 벡터를 사용합니다.
       - 결과 이미지: 
       - 팀원 4명 
