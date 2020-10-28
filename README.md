@@ -13,9 +13,9 @@
 
 <h1> 크라우드 펀딩 사이트의 펀딩상품을 딥러닝으로 예측해보자 </h1>
 <body>
+      
       - 1단계 크롤링 하기 (21만개의 이미지와 텍스트데이터)
       ##### 힘들었던점 : 크롤링의 속도개선 
-      
       - 참고 내용 https://solisgrowing.github.io/2020/02/10/googlecloudplatform-using-selenium/
       - 2단계 딥러닝으로 학습시키기
       - 3단계 예측결과 django로 예측웹페이지 만들기<br>
