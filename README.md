@@ -26,5 +26,6 @@
  </body>
  <h3> 이미지 딥러닝 django 캡쳐이미지 </h3>
  ![ex_screenshot](./이미지딥러닝-실행화면.png)
+![]( https://github.com/SOLISGROWING/portfolio_yeji/blob/main/%EC%9D%B4%EB%AF%B8%EB%94%A5%EB%9F%AC%EB%8B%9D-%EC%8B%A4%ED%96%89%ED%99%94%EB%A9%B4.png)
  
 
