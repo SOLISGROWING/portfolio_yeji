@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.crawler.vo.ArticleVO" alias="ArticleVO" />
+		<typeAlias type="com.crawler.vo.CrawlSiteVO" alias="CrawlSiteVO" />
+		<typeAlias type="com.crawler.vo.OnePageVO" alias="OnePageVO" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="mapper/Tb_Project_SQL.xml" />
+	</mappers>
+</configuration>

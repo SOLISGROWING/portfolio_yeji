@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.crawler.service.dao.ProjectDAO">
+	<resultMap id="contents" type="hashmap">
+    	<result property="body" column="body" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+	<select id="selectAnonymous" resultType="ArticleVO" parameterType="ArticleVO">
+		select writer_id,title from tb_practice where writer_id=#{writerId}
+	</select>
+	<select id="selectProjectList" resultType="ArticleVO" resultMap="contents">
+		select * from tb_practice 
+	</select>
+	<select id="selectForCrawl" resultType="CrawlSiteVO" >
+		select *
+		from tb_crawl_site 
+		where site_type='C' 
+	</select>
+	
+ 	<select id="selectUrlForCrawl" resultType="CrawlSiteVO" parameterType="CrawlSiteVO">
+		select url
+		from tb_crawl_site 
+		where site_type='C' 
+<!-- 		where site_sub_cate=#{siteSubCate}
+ --></select>
+ 	<select id="selectOnePageUrl" resultType="String" parameterType="OnepageVO">
+		select url
+		from tb_crawl_practice
+		where seq=#{seq} 
+	</select>
+	<select id="selecttwotable" resultType="int" parameterType="string">
+		select  count(0)
+		from ${tableName}
+	</select>
+	<select id="selectforPK"  parameterType="ArticleVO" resultType="boolean">
+		select  decode(max(url), null, 0, 1) BOOL_VAL
+		from ${tableName}
+		where url = #{url}
+	</select>
+	<select id="isExist" parameterType="ArticleVO" resultType="boolean">
+  		select decode(max(url), null, 0, 1) BOOL_VAL
+		from TB_PRACTICE tp where url = #{url}
+	</select>
+	<insert id="insertPractical" parameterType="ArticleVO">
+	insert into ${tableName} (
+	  	SEQ,
+	  	ARTICLE_ID,
+	  	SITE_ID_OLD,
+	  	WRITER_ID,
+	  	CRAWL_DATE,
+	  	TITLE,
+	  	BODY,
+	  	RT,
+	  	REPLY_ID,
+	  	RE,
+	  	LAT,
+	  	LNG,
+	  	CREATE_DATE,
+	  	SITE_TYPE,
+	  	ADDRESS_STATUS,
+	  	MENTION,
+	  	URL,
+	  	REPUTATION_TYPE,
+	  	SITE_SUB_TYPE,
+	  	CONTENT_ID,
+	  	SITE_ID,
+	  	SITE_CODE,
+	  	WRITER_NAME,
+	  	COLLECTED_BY,
+	  	RT_COUNT,
+	  	FOLLOWER_COUNT,
+	  	SITE_NAME,
+	  	SITE_CATEGORY,
+	  	HIT_COUNT,
+	  	COMMENT_COUNT,
+	  	LIKE_COUNT
+	  )
+	  VALUES (
+	    
+	    ${seqName}.NEXTVAL,
+	    #{articleId},
+	    #{siteIdOld},
+	    #{writerId},
+	    to_char(sysdate,'YYYYMMDDHH24MISS'),
+	    #{title},
+	    #{body},
+	    #{rt},
+	    #{replyId},
+	    #{re},
+	    #{lat},
+	    #{lng},
+	    #{createDate},
+	    #{siteType},
+	    #{addressStatus},
+	    #{mention},
+	    #{url},
+	    #{reputationType},
+	    #{siteSubType},
+	    #{contentId},
+	    #{siteId},
+	    #{siteCode},
+	    #{writerName},
+	    #{collectedBy},
+	    #{rtCount},
+	    #{followerCount},
+	    #{siteName},
+	    #{siteCategory},
+	    #{hitCount},
+	    #{commentCount},
+	    #{likeCount}
+	    
+	  )
+	</insert>
+	<insert id="insertAll" parameterType="ArticleVO">
+	  insert into tb_practice (
+	  	SEQ,
+	  	ARTICLE_ID,
+	  	SITE_ID_OLD,
+	  	WRITER_ID,
+	  	CRAWL_DATE,
+	  	TITLE,
+	  	BODY,
+	  	RT,
+	  	REPLY_ID,
+	  	RE,
+	  	LAT,
+	  	LNG,
+	  	CREATE_DATE,
+	  	SITE_TYPE,
+	  	ADDRESS_STATUS,
+	  	MENTION,
+	  	URL,
+	  	REPUTATION_TYPE,
+	  	SITE_SUB_TYPE,
+	  	CONTENT_ID,
+	  	SITE_ID,
+	  	SITE_CODE,
+	  	WRITER_NAME,
+	  	COLLECTED_BY,
+	  	RT_COUNT,
+	  	FOLLOWER_COUNT,
+	  	SITE_NAME,
+	  	SITE_CATEGORY,
+	  	HIT_COUNT,
+	  	COMMENT_COUNT,
+	  	LIKE_COUNT
+	  )
+	  VALUES (
+	    TEMP_SEQ.NEXTVAL,
+	    #{articleId},
+	    #{siteIdOld},
+	    #{writerId},
+	    #{crawlDate},
+	    #{title},
+	    #{body},
+	    #{rt},
+	    #{replyId},
+	    #{re},
+	    #{lat},
+	    #{lng},
+	    #{createDate},
+	    #{siteType},
+	    #{addressStatus},
+	    #{mention},
+	    #{url},
+	    #{reputationType},
+	    #{siteSubType},
+	    #{contentId},
+	    #{siteId},
+	    #{siteCode},
+	    #{writerName},
+	    #{collectedBy},
+	    #{rtCount},
+	    #{followerCount},
+	    #{siteName},
+	    #{siteCategory},
+	    #{hitCount},
+	    #{commentCount},
+	    #{likeCount}
+	    
+	  )
+
+	</insert>
+ 
+
+</mapper>
+
